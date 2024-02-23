@@ -1,0 +1,98 @@
+﻿
+@model List<Movie>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        color: #007bff;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    thead {
+        background-color: #343a40;
+        color: #ffffff;
+    }
+
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    .btn-info, .btn-danger {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+</style>
+
+
+<h1 style="text-align:center"> The BEST Movie List! </h1>
+
+<br />
+<br />
+
+<table class="table table-bordered">
+
+    <thead class="fw-bold">
+        <tr>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Release Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent To</td>
+            <td>Copied to Plex</td>
+            <td>Notes</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+
+    @foreach (var x in Model)
+    {
+        <tbody> 
+            <tr>
+                <td>@x.Title</td>
+                <td>@x.Category.CategoryName</td>
+                <td>@x.Year</td>
+                <td>@x.Director</td>
+                <td>@x.Rating</td>
+                <td>@x.Edited</td>
+                <td>@x.LentTo</td>
+                <td>@x.CopiedToPlex</td>
+                <td>@x.Notes</td>
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
+            </tr>
+        </tbody>
+    } 
+
+</table>

@@ -1,6 +1,70 @@
-﻿@model Application
+﻿
 
-<div style="text-align:center">
+@model Movie
+
+<div style="text-align:center">Z|X
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        #charCount {
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        asp-validation-summary {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+
 
 <h1> Add a Movie to the Collection </h1>
 
@@ -13,55 +77,31 @@
 
     <form style="text-align:center" method="post">
 
-        <label asp-for="MovieCategory" > Movie Category </label>
+        <input type="hidden" asp-for="MovieId"/>
+
+        <label asp-for="Title"> Movie Title </label>
         <br />
-        <select label asp-for="MovieCategory">
+        <input asp-for="Title">
+
+        <br />
+        <br />
+
+        <label asp-for="CategoryId" > Movie Category </label>
+        <br />
+        <select label asp-for="CategoryId">
             <option value="">- Select a Category -</option>
-            <option >Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Family">Family</option>
-            <option value="Horror">Horror</option>
-            <option value="Suspense">Suspense</option>
-            <option value="Miscellaneous">Miscellaneous</option>
-            <option value="Television">Television</option>
-            <option value="VHS">VHS</option>
+            @foreach (var x in ViewBag.Movies)
+            {
+                <option value="@x.CategoryId">@x.CategoryName</option>
+            }
         </select>
 
         <br />
         <br />
 
-        <label label asp-for="MovieSubCategory"> Movie Subcategory </label>
+        <label asp-for="Year"> Release Year </label>
         <br />
-        <select asp-for="MovieSubCategory">
-            <option value="">- Select a Category -</option>
-            <option value=""> N/A </option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Drama">Drama</option>
-            <option value="Family">Family</option>
-            <option value="Horror">Horror</option>
-            <option value="Suspense">Suspense</option>
-            <option value="Miscellaneous">Miscellaneous</option>
-            <option value="Television">Television</option>
-            <option value="VHS">VHS</option>
-        </select>
-
-        <br />
-        <br />
-
-        <label asp-for="MovieName"> Movie Name </label>
-        <br />
-        <input asp-for="MovieName">
-
-        <br />
-        <br />
-
-        <label asp-for="ReleaseYear"> Release Year </label>
-        <br />
-        <select asp-for="ReleaseYear">
+        <select asp-for="Year">
             <option value="">- Select a Year -</option>
             <option value="2024">2024</option>
             <option value="2023">2023</option>
@@ -188,8 +228,19 @@
             <option value="1902">1902</option>
             <option value="1901">1901</option>
             <option value="1900">1900</option>
+            <option value="1899">1899</option>
+            <option value="1898">1898</option>
+            <option value="1897">1897</option>
+            <option value="1896">1896</option>
+            <option value="1895">1895</option>
+            <option value="1894">1894</option>
+            <option value="1893">1893</option>
+            <option value="1892">1892</option>
+            <option value="1891">1891</option>
+            <option value="1890">1890</option>
+            <option value="1889">1889</option>
+            <option value="1888">1888</option>
         </select>
-
 
         <br />
         <br />
@@ -216,6 +267,7 @@
 
         <label asp-for="Edited">Edited</label>
         <br />
+
         <select asp-for="Edited">
             <option value="false">No</option>
             <option value="true">Yes</option>
@@ -228,6 +280,16 @@
         <label asp-for="LentTo"> Lent To </label>
         <br />
         <input asp-for="LentTo">
+
+        <br />
+        <br />
+
+        <label asp-for="CopiedToPlex">Copied to Plex</label>
+        <br />
+        <select asp-for="Edited">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+        </select>
 
         <br />
         <br />
@@ -254,6 +316,9 @@
         <br />
 
         <button type="submit"> Add New Movie </button>
+
+        <div asp-validation-summary="All"></div>
+
     </form>
 
 </div>
